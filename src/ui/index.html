@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OFU Live Feed</title>
+  <style>
+    body { font-family: sans-serif; padding: 1em; }
+    #events { height: 80vh; overflow-y: auto; border: 1px solid #ccc; padding: 1em; }
+  </style>
+</head>
+<body>
+  <h1>Open Football Universe – Live Feed</h1>
+  <div id="events"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const eventsEl = document.getElementById('events');
+
+    socket.on('init', data => {
+      eventsEl.innerHTML += `<div>Loaded ${data.traitsCount} traits, ${data.boostsCount} boosts.</div>`;
+    });
+
+    socket.on('gameEvents', evts => {
+      evts.forEach(e => {
+        const div = document.createElement('div');
+        div.textContent = `[${new Date(e.time).toLocaleTimeString()}] ${e.type}`;
+        eventsEl.prepend(div);
+      });
+    });
+  </script>
+</body>
+</html>
