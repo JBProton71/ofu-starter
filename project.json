@@ -1,0 +1,18 @@
+{
+  "name": "ofu-starter",
+  "version": "0.1.0",
+  "description": "Open Football Universe - Starter Framework",
+  "main": "src/engine/index.js",
+  "scripts": {
+    "start": "node src/engine/index.js",
+    "dev": "nodemon src/engine/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.5.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "license": "MIT"
+}
